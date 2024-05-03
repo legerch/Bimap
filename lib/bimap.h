@@ -9,11 +9,11 @@
    \class cmap::Bimap
    \brief Class use to provide bi-directional map support.
 
-   \b std::map provide fast-lookup when search value by key (complexity: <b>O(log(n)</b>) but
+   \b std::map provide fast-lookup when search value by key (complexity: <b>O(log(n))</b>) but
    when searching by value is needed, complexity increase (<b>O(n)</b>), \c std::map is
    simply not designed for this purpose. \n
-   This class allow to provide fast lookup when searching by keys (<b>O(log(n)</b>) or by
-   values (<b>O(log(n)</b>).
+   This class allow to provide fast lookup when searching by keys (<b>O(log(n))</b>) or by
+   values (<b>O(log(n))</b>).
 
    \note
    Note that to provide fast-lookup on both entities, memory usage is doubled, so use
@@ -41,6 +41,12 @@ private:
     using _TypeNode = std::pair<TypeKey, TypeValue>; // Used to implement std::initializer_list<T> support
 
 public:
+    using iterator = typename _ContainerKey::iterator;
+    using const_iterator = typename _ContainerKey::const_iterator;
+    using reverse_iterator = typename _ContainerKey::reverse_iterator;
+    using const_reverse_iterator = typename _ContainerKey::const_reverse_iterator;
+
+public:
     Bimap();
     Bimap(const std::initializer_list<_TypeNode> &args);
 
@@ -61,14 +67,14 @@ private:
     void insert(const _TypeNode &node);
 
 public:
-    typename std::map<TypeKey, TypeValue>::iterator begin();
-    typename std::map<TypeKey, TypeValue>::const_iterator cbegin();
-    typename std::map<TypeKey, TypeValue>::reverse_iterator rbegin();
-    typename std::map<TypeKey, TypeValue>::const_reverse_iterator crbegin();
-    typename std::map<TypeKey, TypeValue>::iterator end();
-    typename std::map<TypeKey, TypeValue>::const_iterator cend();
-    typename std::map<TypeKey, TypeValue>::reverse_iterator rend();
-    typename std::map<TypeKey, TypeValue>::const_reverse_iterator crend();
+    iterator begin();
+    const_iterator cbegin();
+    reverse_iterator rbegin();
+    const_reverse_iterator crbegin();
+    iterator end();
+    const_iterator cend();
+    reverse_iterator rend();
+    const_reverse_iterator crend();
 
 private:
     _ContainerKey m_map;
@@ -214,7 +220,7 @@ void Bimap<TypeKey, TypeValue>::erase(const TypeKey &key)
         m_map.erase(key);
         m_mapInversed.erase(value);
 
-    }catch(std::out_of_range &ex){
+    }catch(const std::out_of_range &ex){
         // Key not found, nothing to erase
     }
 }
@@ -261,7 +267,7 @@ const TypeKey &Bimap<TypeKey, TypeValue>::getKey(const TypeValue &value) const
  * If the map is empty, the returned iterator will be equal to \c end().
  */
 template<class TypeKey, class TypeValue>
-typename std::map<TypeKey, TypeValue>::iterator Bimap<TypeKey, TypeValue>::begin()
+typename Bimap<TypeKey, TypeValue>::iterator Bimap<TypeKey, TypeValue>::begin()
 {
     return m_map.begin();
 }
@@ -274,7 +280,7 @@ typename std::map<TypeKey, TypeValue>::iterator Bimap<TypeKey, TypeValue>::begin
  * If the map is empty, the returned iterator will be equal to \c cend().
  */
 template<class TypeKey, class TypeValue>
-typename std::map<TypeKey, TypeValue>::const_iterator Bimap<TypeKey, TypeValue>::cbegin()
+typename Bimap<TypeKey, TypeValue>::const_iterator Bimap<TypeKey, TypeValue>::cbegin()
 {
     return m_map.cbegin();
 }
@@ -290,7 +296,7 @@ typename std::map<TypeKey, TypeValue>::const_iterator Bimap<TypeKey, TypeValue>:
  * If the map is empty, the returned iterator is equal to \c rend().
  */
 template<class TypeKey, class TypeValue>
-typename std::map<TypeKey, TypeValue>::reverse_iterator Bimap<TypeKey, TypeValue>::rbegin()
+typename Bimap<TypeKey, TypeValue>::reverse_iterator Bimap<TypeKey, TypeValue>::rbegin()
 {
     return m_map.rbegin();
 }
@@ -306,7 +312,7 @@ typename std::map<TypeKey, TypeValue>::reverse_iterator Bimap<TypeKey, TypeValue
  * If the map is empty, the returned iterator is equal to \c crend().
  */
 template<class TypeKey, class TypeValue>
-typename std::map<TypeKey, TypeValue>::const_reverse_iterator Bimap<TypeKey, TypeValue>::crbegin()
+typename Bimap<TypeKey, TypeValue>::const_reverse_iterator Bimap<TypeKey, TypeValue>::crbegin()
 {
     return m_map.crbegin();
 }
@@ -318,7 +324,7 @@ typename std::map<TypeKey, TypeValue>::const_reverse_iterator Bimap<TypeKey, Typ
  * Iterator to the element following the last element.
  */
 template<class TypeKey, class TypeValue>
-typename std::map<TypeKey, TypeValue>::iterator Bimap<TypeKey, TypeValue>::end()
+typename Bimap<TypeKey, TypeValue>::iterator Bimap<TypeKey, TypeValue>::end()
 {
     return m_map.end();
 }
@@ -330,7 +336,7 @@ typename std::map<TypeKey, TypeValue>::iterator Bimap<TypeKey, TypeValue>::end()
  * Iterator to the element following the last element.
  */
 template<class TypeKey, class TypeValue>
-typename std::map<TypeKey, TypeValue>::const_iterator Bimap<TypeKey, TypeValue>::cend()
+typename Bimap<TypeKey, TypeValue>::const_iterator Bimap<TypeKey, TypeValue>::cend()
 {
     return m_map.cend();
 }
@@ -345,7 +351,7 @@ typename std::map<TypeKey, TypeValue>::const_iterator Bimap<TypeKey, TypeValue>:
  * Reverse iterator to the element following the last element.
  */
 template<class TypeKey, class TypeValue>
-typename std::map<TypeKey, TypeValue>::reverse_iterator Bimap<TypeKey, TypeValue>::rend()
+typename Bimap<TypeKey, TypeValue>::reverse_iterator Bimap<TypeKey, TypeValue>::rend()
 {
     return m_map.rend();
 }
@@ -360,11 +366,11 @@ typename std::map<TypeKey, TypeValue>::reverse_iterator Bimap<TypeKey, TypeValue
  * Reverse iterator to the element following the last element.
  */
 template<class TypeKey, class TypeValue>
-typename std::map<TypeKey, TypeValue>::const_reverse_iterator Bimap<TypeKey, TypeValue>::crend()
+typename Bimap<TypeKey, TypeValue>::const_reverse_iterator Bimap<TypeKey, TypeValue>::crend()
 {
     return m_map.crend();
 }
 
 } // Namespace cmap
 
-#endif // Bimap_H
+#endif // LCH_BIMAP_H
