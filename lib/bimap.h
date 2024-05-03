@@ -26,7 +26,6 @@
 */
 
 #include <map>
-#include <stdexcept>
 
 namespace cmap{
 
@@ -57,7 +56,7 @@ public:
 
     void clear();
     void insert(const TypeKey &key, const TypeValue &value);
-    void erase(const TypeKey& key);
+    void erase(const TypeKey &key);
 
     const TypeValue& getValue(const TypeKey &key) const;
     const TypeKey& getKey(const TypeValue &value) const;
@@ -211,18 +210,15 @@ void Bimap<TypeKey, TypeValue>::insert(const _TypeNode &node)
 template<class TypeKey, class TypeValue>
 void Bimap<TypeKey, TypeValue>::erase(const TypeKey &key)
 {
-    /*
-     * Erase must succeed, so use try catch because value is needed to remove
-     * it from inversed map
-     */
-    try{
-        const TypeValue value = m_map.at(key);
-        m_map.erase(key);
-        m_mapInversed.erase(value);
-
-    }catch(const std::out_of_range &ex){
-        // Key not found, nothing to erase
+    /* Verify that key exists */
+    auto it = m_map.find(key);
+    if(it == m_map.cend()){
+        return;
     }
+
+    /* Remove item from both maps */
+    m_mapInversed.erase(it->second);
+    m_map.erase(it);
 }
 
 /*!
