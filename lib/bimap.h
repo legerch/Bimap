@@ -67,13 +67,13 @@ private:
 
 public:
     iterator begin();
-    const_iterator cbegin();
+    const_iterator cbegin() const;
     reverse_iterator rbegin();
-    const_reverse_iterator crbegin();
+    const_reverse_iterator crbegin() const;
     iterator end();
-    const_iterator cend();
+    const_iterator cend() const;
     reverse_iterator rend();
-    const_reverse_iterator crend();
+    const_reverse_iterator crend() const;
 
 private:
     _ContainerKey m_map;
@@ -276,7 +276,7 @@ typename Bimap<TypeKey, TypeValue>::iterator Bimap<TypeKey, TypeValue>::begin()
  * If the map is empty, the returned iterator will be equal to \c cend().
  */
 template<class TypeKey, class TypeValue>
-typename Bimap<TypeKey, TypeValue>::const_iterator Bimap<TypeKey, TypeValue>::cbegin()
+typename Bimap<TypeKey, TypeValue>::const_iterator Bimap<TypeKey, TypeValue>::cbegin() const
 {
     return m_map.cbegin();
 }
@@ -308,7 +308,7 @@ typename Bimap<TypeKey, TypeValue>::reverse_iterator Bimap<TypeKey, TypeValue>::
  * If the map is empty, the returned iterator is equal to \c crend().
  */
 template<class TypeKey, class TypeValue>
-typename Bimap<TypeKey, TypeValue>::const_reverse_iterator Bimap<TypeKey, TypeValue>::crbegin()
+typename Bimap<TypeKey, TypeValue>::const_reverse_iterator Bimap<TypeKey, TypeValue>::crbegin() const
 {
     return m_map.crbegin();
 }
@@ -332,7 +332,7 @@ typename Bimap<TypeKey, TypeValue>::iterator Bimap<TypeKey, TypeValue>::end()
  * Iterator to the element following the last element.
  */
 template<class TypeKey, class TypeValue>
-typename Bimap<TypeKey, TypeValue>::const_iterator Bimap<TypeKey, TypeValue>::cend()
+typename Bimap<TypeKey, TypeValue>::const_iterator Bimap<TypeKey, TypeValue>::cend() const
 {
     return m_map.cend();
 }
@@ -362,7 +362,7 @@ typename Bimap<TypeKey, TypeValue>::reverse_iterator Bimap<TypeKey, TypeValue>::
  * Reverse iterator to the element following the last element.
  */
 template<class TypeKey, class TypeValue>
-typename Bimap<TypeKey, TypeValue>::const_reverse_iterator Bimap<TypeKey, TypeValue>::crend()
+typename Bimap<TypeKey, TypeValue>::const_reverse_iterator Bimap<TypeKey, TypeValue>::crend() const
 {
     return m_map.crend();
 }
