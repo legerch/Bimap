@@ -64,9 +64,11 @@ public:
     typename std::map<TypeKey, TypeValue>::iterator begin();
     typename std::map<TypeKey, TypeValue>::const_iterator cbegin();
     typename std::map<TypeKey, TypeValue>::reverse_iterator rbegin();
+    typename std::map<TypeKey, TypeValue>::const_reverse_iterator crbegin();
     typename std::map<TypeKey, TypeValue>::iterator end();
     typename std::map<TypeKey, TypeValue>::const_iterator cend();
     typename std::map<TypeKey, TypeValue>::reverse_iterator rend();
+    typename std::map<TypeKey, TypeValue>::const_reverse_iterator crend();
 
 private:
     _ContainerKey m_map;
@@ -294,6 +296,22 @@ typename std::map<TypeKey, TypeValue>::reverse_iterator Bimap<TypeKey, TypeValue
 }
 
 /*!
+ * \brief Returns a constant reverse iterator to the beginning
+ * \details
+ * Returns a reverse iterator to the first element of the reversed map.
+ * It corresponds to the last element of the non-reversed map. \n
+ *
+ * \return
+ * Reverse iterator to the first element. \n
+ * If the map is empty, the returned iterator is equal to \c crend().
+ */
+template<class TypeKey, class TypeValue>
+typename std::map<TypeKey, TypeValue>::const_reverse_iterator Bimap<TypeKey, TypeValue>::crbegin()
+{
+    return m_map.crbegin();
+}
+
+/*!
  * \brief Returns an iterator to the end
  *
  * \return
@@ -330,6 +348,21 @@ template<class TypeKey, class TypeValue>
 typename std::map<TypeKey, TypeValue>::reverse_iterator Bimap<TypeKey, TypeValue>::rend()
 {
     return m_map.rend();
+}
+
+/*!
+ * \brief Returns a constant reverse iterator to the end
+ * \details
+ * Returns a reverse iterator to the element following the last element of the reversed map.
+ * It corresponds to the element preceding the first element of the non-reversed map.
+ *
+ * \return
+ * Reverse iterator to the element following the last element.
+ */
+template<class TypeKey, class TypeValue>
+typename std::map<TypeKey, TypeValue>::const_reverse_iterator Bimap<TypeKey, TypeValue>::crend()
+{
+    return m_map.crend();
 }
 
 } // Namespace cmap
