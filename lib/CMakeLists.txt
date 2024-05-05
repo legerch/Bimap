@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.19)
 # Set project properties
 set(PROJECT_NAME bimap)
 set(PROJECT_VERSION_SEMANTIC 0.0.1)
-set(PROJECT_VERSION_CPP_MIN 17)
+set(PROJECT_VERSION_CPP_MIN 11)
 
 # Set project options
 # Options availables for external project start with "EXT_OPT_BIMAP_", those options can be use in top CMakeFiles.

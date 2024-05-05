@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.19)
 project(BimapMain LANGUAGES CXX)
 
 # Set C++ standard to use
-set(CMAKE_CXX_STANDARD 17)
+## Don't explicitly set C++ standard to use, let library use
+## minimal standard version set
+## set(CMAKE_CXX_STANDARD 17)
 
 # Find architecture property
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
