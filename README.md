@@ -1,4 +1,4 @@
-Library containing an implementation for a _bidirectionnal map_ using C++ 11 standard
+Library containing an implementation for a _bidirectional map_ using C++ 11 standard.
 
 **Table of contents :**
 - [1. Requirements](#1-requirements)
