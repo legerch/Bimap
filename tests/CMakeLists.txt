@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.19)
 
 # Set project properties
 set(PROJECT_NAME bimap-tests)
-set(PROJECT_VERSION_CPP_MIN 17)
+set(PROJECT_VERSION_CPP_MIN 11)
 
 # Set project configuration
 project(${PROJECT_NAME} LANGUAGES CXX)
